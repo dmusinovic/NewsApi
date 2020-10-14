@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="content-div">
+        <mat-card>
+            <div class="flex-container">
+                <img *ngIf="(article$ | async)?.urlToImage != null" mat-card-image class="img-article"
+                    src="{{ (article$ | async)?.urlToImage }}" alt="">
+            </div>
+            <mat-card-title *ngIf="(article$ | async)?.title != null"><strong>{{(article$ | async)?.title }}</strong>
+            </mat-card-title>
+            <mat-card-content>
+                <p *ngIf="(article$ | async)?.publishedAt != null"><b>Published at: </b>
+                    {{(article$ | async)?.publishedAt | date: 'dd/MM/yyyy HH:mm'}}</p>
+                <p *ngIf="(article$ | async)?.author != null"> <b>Author: </b> {{(article$ | async)?.author}}</p>
+                <p *ngIf="(article$ | async)?.source?.name != null"> <b>Source: </b>
+                    {{(article$ | async)?.source?.name}}</p>
+                <p *ngIf="(article$ | async)?.description != null"><i> {{(article$ | async)?.description}} </i></p>
+                <p *ngIf="(article$ | async)?.content != null">{{(article$ | async)?.content}}</p>
+                <a *ngIf="(article$ | async)?.url != null" href="{{(article$ | async)?.url}}"> [Continue reading] </a>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

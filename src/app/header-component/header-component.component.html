@@ -1,0 +1,29 @@
+<header class="header">
+    <mat-toolbar>
+        <h1><b>US Breaking Headlines</b></h1>
+        <mat-drawer-container *ngIf="showFilerOptions" >
+            <mat-drawer class="test" #drawer mode="side" position="end">
+                <form [formGroup]="formGroup" novalidate>
+                    <mat-form-field floatLabel="never">
+                        <mat-label>Search</mat-label>
+                        <input matInput formControlName="searchTerm" type="text">
+                    </mat-form-field>
+                    <mat-form-field floatLabel="never">
+                        <mat-label>Sort By Section</mat-label>
+                        <mat-select formControlName="sortBy" [disabled]="disableSort">
+                            <mat-option *ngFor="let option of sortOptions " [value]="option.value">
+                                {{option.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" (click)="applyFilters()">Apply filters</button>
+                </form>
+            </mat-drawer>
+            <div class="sideNav">
+                <button mat-button matSuffix mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </mat-drawer-container>
+    </mat-toolbar>
+</header>
